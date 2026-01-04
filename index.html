@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evolve Books - مجموعه کتاب‌های Evolve</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Plyr CSS -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <h1 class="logo">📚 Evolve Books</h1>
+      <select id="book-selector" class="book-selector">
+        <option value="">انتخاب کتاب...</option>
+        <option value="1">Evolve 1</option>
+        <option value="2">Evolve 2</option>
+        <option value="3">Evolve 3</option>
+        <option value="4">Evolve 4</option>
+        <option value="5">Evolve 5</option>
+        <option value="6">Evolve 6</option>
+      </select>
+    </div>
+  </header>
+
+  <!-- صفحه اصلی -->
+  <main id="home-page" class="page">
+    <div class="container">
+      <div class="home-hero">
+        <h2>مجموعه کتاب‌های Evolve</h2>
+        <p>دسترسی آسان به فایل‌های PDF، صوتی و ویدیویی</p>
+      </div>
+      <div id="books-grid" class="books-grid">
+        <!-- کارت‌های کتاب‌ها -->
+      </div>
+    </div>
+  </main>
+
+  <!-- صفحه کتاب -->
+  <main id="book-page" class="page hidden">
+    <div class="container">
+      <!-- Hero Section: Cover + PDFs -->
+      <section id="book-overview" class="book-overview">
+        <div class="book-header-compact">
+          <button id="back-home-btn" class="back-home-btn">
+            <span>←</span>
+            <span>بازگشت</span>
+          </button>
+          <h1 id="book-title" class="book-title-main">Evolve</h1>
+        </div>
+        <div class="overview-content">
+          <div id="cover-container" class="cover-container-compact">
+            <img id="cover-img" src="" alt="Cover" class="cover-image">
+            <div class="cover-placeholder">📖</div>
+          </div>
+          <div id="main-pdfs" class="main-pdfs-layout">
+            <!-- کارت‌های PDF اصلی -->
+          </div>
+        </div>
+      </section>
+
+      <!-- بخش‌های دیگر -->
+      <section id="sections-container" class="sections-container">
+        <!-- بخش‌ها با accordion -->
+      </section>
+    </div>
+  </main>
+
+  <!-- Modal برای PDF -->
+  <div id="pdf-modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title"></h3>
+        <div class="modal-actions">
+          <a id="modal-open-tab" href="#" target="_blank" class="btn-icon" title="باز کردن در تب جدید">🔗</a>
+          <a id="modal-download" href="#" download class="btn-icon" title="دانلود">⬇️</a>
+          <button id="modal-close" class="btn-icon" title="بستن">✕</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <iframe id="pdf-iframe" src=""></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sticky Audio Player -->
+  <div id="audio-player" class="audio-player hidden">
+    <div class="audio-player-content">
+      <div class="audio-info">
+        <span class="audio-icon">🎵</span>
+        <span id="audio-filename" class="audio-filename"></span>
+      </div>
+      <div class="audio-controls">
+        <button id="audio-next" class="audio-btn audio-btn-next" title="بعدی">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
+        </button>
+        <button id="audio-prev" class="audio-btn audio-btn-prev" title="قبلی">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="audio-seek">
+        <!-- Audio element will be created dynamically -->
+      </div>
+      <button id="audio-close" class="audio-close" title="بستن">✕</button>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loading-overlay" class="loading-overlay hidden">
+    <div class="spinner"></div>
+    <p>در حال بارگذاری...</p>
+  </div>
+
+  <!-- Plyr JS -->
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+
