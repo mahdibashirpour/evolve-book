@@ -461,13 +461,15 @@ function renderOverview(bookNumber, assets) {
     card.className = `pdf-card pdf-card-secondary ${!file ? 'disabled' : ''}`;
 
     if (file) {
-      const fileData = encodeURIComponent(JSON.stringify(file)).replace(/'/g, "\\'");
+      // Escape برای استفاده در onclick
+      const fileDataEscaped = encodeURIComponent(JSON.stringify(file))
+        .replace(/'/g, "\\'");
       card.innerHTML = `
         <div class="pdf-card-icon">${icon}</div>
         <div class="pdf-card-title">${name}</div>
         <div class="pdf-card-subtitle">${subtitle}</div>
         <div class="pdf-card-actions">
-          <button class="btn btn-primary" onclick="openPdfModalFromData('${fileData.replace(/'/g, "\\'")}')">مشاهده</button>
+          <button class="btn btn-primary" onclick="openPdfModalFromData('${fileDataEscaped}')">مشاهده</button>
           <a href="${file.url}" download="${file.name}" class="btn btn-success">دانلود</a>
         </div>
       `;
@@ -773,8 +775,18 @@ function sortFiles(select, sectionKey) {
 // ============================================
 
 function openPdfModalFromData(fileDataEncoded) {
-  const file = JSON.parse(decodeURIComponent(fileDataEncoded));
-  openPdfModal(file);
+  try {
+    // Decode
+    let decoded = decodeURIComponent(fileDataEncoded);
+    // Unescape اگر escape شده باشد
+    decoded = decoded.replace(/\\'/g, "'").replace(/\\"/g, '"').replace(/\\n/g, '\n').replace(/&quot;/g, '"');
+    const file = JSON.parse(decoded);
+    openPdfModal(file);
+  } catch (error) {
+    console.error('Error opening PDF modal:', error);
+    console.error('File data:', fileDataEncoded);
+    alert('خطا در باز کردن فایل. لطفاً دوباره تلاش کنید.');
+  }
 }
 
 function openPdfModal(file) {

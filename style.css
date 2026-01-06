@@ -660,7 +660,7 @@ body {
   background: var(--card-bg);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  overflow: hidden;
+  overflow: visible;
   border: 1px solid var(--border);
   transition: all 0.2s;
 }
@@ -714,11 +714,14 @@ body {
 }
 
 .section-content.open {
-  max-height: 5000px;
+  max-height: none;
+  overflow: visible;
+  height: auto;
 }
 
 .section-body {
   padding: 24px;
+  overflow: visible;
 }
 
 .section-toolbar {
@@ -795,8 +798,9 @@ body {
   width: 100%;
   background: #000;
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
+  min-height: 200px;
 }
 
 .video-wrapper .plyr-video,
@@ -810,6 +814,8 @@ body {
 .video-wrapper .plyr {
   width: 100%;
   height: auto;
+  max-height: 600px;
+  overflow: visible;
 }
 
 .video-info {
@@ -1158,6 +1164,11 @@ body {
 .file-item.audio-item .plyr {
   max-width: 400px;
   margin: 8px 0;
+  overflow: visible;
+}
+
+.file-item.audio-item {
+  overflow: visible;
 }
 
 .audio-close {
